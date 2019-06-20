@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+
 import logo from "./logo.svg";
 import "./App.css";
+
 
 class App extends Component {
   constructor(props) {
@@ -12,12 +14,19 @@ class App extends Component {
   }
 
   fileSelectedHandler = event => {
+    let arr = [];
     if (event.target.files && event.target.files[0]) {
+      
+      for(let i = 0; i<event.target.files.length; i++){
+        arr.push(URL.createObjectURL(event.target.files[i]));
+      }
+     
+      
       this.setState({
         images: [
           ...this.state.images,
-          URL.createObjectURL(event.target.files[0])
-        ]
+          ...arr]
+        
       });
     }
   };
@@ -26,9 +35,11 @@ class App extends Component {
     return (
       <div className="App">
         <input type="file" onChange={this.fileSelectedHandler} multiple />
-        {this.state.images.map(e => (
-          <img src={e} />
-        ))}
+       <div>
+       {this.state.images.map(e => 
+         <img src={e}/>
+        )}
+        </div>
       </div>
     );
   }
