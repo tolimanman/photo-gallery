@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-
-import logo from "./logo.svg";
+import AdvancedGridList from './Gallery';
 import "./App.css";
 
 
@@ -34,12 +33,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h2>A simple website</h2>
+        <h2>Upload as meny images as you want and it will be displayed on screen</h2>
+        <div  id="inputButton">
         <input type="file" onChange={this.fileSelectedHandler} multiple />
-       <div>
-       {this.state.images.map(e => 
-         <img src={e}/>
-        )}
+        <h3>You uploaded {this.state.images.length} images</h3>
         </div>
+      
+          <AdvancedGridList image = {this.state.images}/>           
+       
       </div>
     );
   }
